@@ -11,8 +11,8 @@ export default async function (req, res) {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       auth: {
-        user: "kineticproject13@gmail.com",
-        pass: "piunwkesgvfekplr",
+        user: "techydev2016@gmail.com",
+        pass: "urdkgdlhwpqhaadu",
       },
     });
 
@@ -21,7 +21,7 @@ export default async function (req, res) {
         const mailData = {
           to: emailData,
           subject: `Message From `,
-          text: "You are answer has been updated. Please check",
+          text: `You answer has been updated. Please check doc: https://docs.google.com/spreadsheets/d/1sQ8umTovNX_PayWPrVnXzXUXiAOJ4ahVRUhxp0PmgGg/edit#gid=0`,
         };
         await new Promise((resolve, reject) => {
           transporter.sendMail(mailData, (err, info) => {

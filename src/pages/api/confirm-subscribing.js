@@ -13,14 +13,14 @@ export default async function (req, res) {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       auth: {
-        user: "kineticproject13@gmail.com",
-        pass: "piunwkesgvfekplr",
+        user: "techydev2016@gmail.com",
+        pass: "urdkgdlhwpqhaadu",
       },
     });
     const mailData = {
       to: userEmail,
       subject: `Message From App Script`,
-      text: `You  are subscurbing to this question. ${data.question}`,
+      text: `You are subscurbing to this question. ${data.question}`,
     };
     await new Promise((resolve, reject) => {
       transporter.sendMail(mailData, (err, info) => {
