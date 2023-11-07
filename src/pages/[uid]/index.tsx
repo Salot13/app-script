@@ -23,7 +23,7 @@ export default function Id() {
       return;
     }
 
-    const test = `${String(query?.uid)}.0`;
+    const test = `${query?.uid}.0`;
     const docRef = db.collection("emails").doc(test);
 
     docRef
