@@ -13,9 +13,12 @@ export default async function handleSubmitPost(req, res) {
 
         data?.email?.map(async (emailData) => {
           try {
-            const sendMails = await axios.post("/api/mail-service", {
-              email: emailData,
-            });
+            const sendMails = await axios.post(
+              "/api/mail-service",
+              {
+                email: emailData,
+              }
+            );
             return sendMails;
           } catch (error) {
             console.error("Error sending email:", error);

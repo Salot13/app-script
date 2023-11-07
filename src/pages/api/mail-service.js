@@ -18,7 +18,7 @@ export default async function (req, res) {
       secure: true,
     });
 
-    const emailPromises = data?.email?.map(async (emailData) => {
+    data?.email?.map(async (emailData) => {
       try {
         const mailData = {
           to: emailData,
@@ -33,8 +33,7 @@ export default async function (req, res) {
       }
     });
 
-    const sentMail = await Promise.all(emailPromises);
-    await res.status(200).json({ message: "Success", body: sentMail });
+    await res.status(200).json({ message: "Success" });
   } else {
     console.log("Document not found.");
   }
