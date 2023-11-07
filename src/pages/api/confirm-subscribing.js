@@ -6,6 +6,9 @@ export default async function (req, res) {
   const docRef = db.collection("emails").doc(req?.body?.id);
   const userEmail = req?.body?.email;
   const doc = await docRef.get();
+
+  const data = doc.data();
+
   if (doc.exists) {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -17,7 +20,7 @@ export default async function (req, res) {
     const mailData = {
       to: userEmail,
       subject: `Message From App Script`,
-      text: `You  are subscurbing to this question. ${doc.question}`,
+      text: `You  are subscurbing to this question. ${data.question}`,
     };
     await new Promise((resolve, reject) => {
       transporter.sendMail(mailData, (err, info) => {
@@ -28,7 +31,7 @@ export default async function (req, res) {
         }
       });
     });
-    return true;
+    await res.status(200).json({ message: "Success" });
   } else {
     console.log("Document not found.");
   }
