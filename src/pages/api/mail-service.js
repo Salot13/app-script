@@ -15,7 +15,7 @@ export default async function (req, res) {
         user: "kineticproject13@gmail.com",
         pass: "piunwkesgvfekplr",
       },
-      secure: true,
+      secure: false,
     });
 
     const checkMail= data?.email?.map(async (emailData) => {
