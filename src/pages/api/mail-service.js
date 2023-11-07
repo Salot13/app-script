@@ -24,9 +24,8 @@ export default async function (req, res) {
           to: emailData,
           subject: `Message From `,
           text: "new one",
-          html: <html><div>HI</div></html>,
         };
-        await transporter.sendMail(mailData);
+        transporter.sendMail(mailData);
       } catch (error) {
         console.error("Error sending email:", error);
         return res.status(400).json({ message: "Success" });
