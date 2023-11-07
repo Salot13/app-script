@@ -9,13 +9,11 @@ export default async function (req, res) {
   if (doc.exists) {
     const data = doc.data();
     const transporter = nodemailer.createTransport({
-      port: 465,
       host: "smtp.gmail.com",
       auth: {
         user: "kineticproject13@gmail.com",
         pass: "piunwkesgvfekplr",
       },
-      secure: false,
     });
 
     const checkMail= data?.email?.map(async (emailData) => {
