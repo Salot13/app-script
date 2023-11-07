@@ -21,7 +21,7 @@ export default async function (req, res) {
         const mailData = {
           to: emailData,
           subject: `Message From `,
-          text: "new one",
+          text: "You are answer has been updated. Please check",
         };
         await new Promise((resolve, reject) => {
           transporter.sendMail(mailData, (err, info) => {

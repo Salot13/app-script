@@ -3,15 +3,11 @@ import { db } from "@/firebase";
 
 export default async function (req, res) {
   const docRef = db.collection("emails").doc(req?.body?.id);
-
-  const doc = await docRef.get();
-  if (doc.exists) {
-    docRef.get().then((doc) => {
-      if (doc.exists) {
-        return docRef.update({ question: req.body.question });
-      }
-    });
-  } else {
-    console.log("Document not found.");
-  }
+  docRef.get().then((doc) => {
+    if (doc.exists) {
+      return docRef.update({ question: req.body.question });
+    } else {
+      return docRef.set({ question: req.body.question });
+    }
+  });
 }
