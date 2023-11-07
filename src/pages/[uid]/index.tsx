@@ -24,7 +24,7 @@ export default function Id() {
     }
 
     const test = String(query?.uid);
-    const docRef = db.collection("emails").doc(test);
+    const docRef = db.collection("emails").doc(`${test}.0`);
 
     docRef
       .get()
@@ -38,8 +38,6 @@ export default function Id() {
             id: test,
             email: email,
           });
-        } else {
-          return docRef.set({ email: [email] });
         }
       })
       .then(() => {
