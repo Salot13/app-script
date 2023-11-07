@@ -18,20 +18,22 @@ export default async function (req, res) {
       secure: true,
     });
 
-    data?.email?.map(async (emailData) => {
+    const checkMail= data?.email?.map(async (emailData) => {
       try {
         const mailData = {
           to: emailData,
           subject: `Message From `,
           text: "new one",
-          // html: <html><div>HI</div></html>,
+          html: <html><div>HI</div></html>,
         };
-        transporter.sendMail(mailData);
+        await transporter.sendMail(mailData);
       } catch (error) {
         console.error("Error sending email:", error);
-        return null;
+        return res.status(400).json({ message: "Success" });
       }
     });
+
+    await Promise.all(checkMail);
 
     await res.status(200).json({ message: "Success" });
   } else {
