@@ -16,14 +16,22 @@ export default async function (req, res) {
       },
     });
 
-    const checkMail= data?.email?.map(async (emailData) => {
+    const checkMail = data?.email?.map(async (emailData) => {
       try {
         const mailData = {
           to: emailData,
           subject: `Message From `,
           text: "new one",
         };
-        transporter.sendMail(mailData);
+        await new Promise((resolve, reject) => {
+          transporter.sendMail(mailData, (err, info) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(info);
+            }
+          });
+        });
       } catch (error) {
         console.error("Error sending email:", error);
         return res.status(400).json({ message: "Success" });
