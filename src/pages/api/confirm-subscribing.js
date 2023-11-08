@@ -20,7 +20,7 @@ export default async function (req, res) {
     const mailData = {
       to: userEmail,
       subject: `Message From App Script`,
-      text: `You are subscurbing to this question. ${data.question}`,
+      text: `You are subscribing to this question. ${data.question}`,
     };
     await new Promise((resolve, reject) => {
       transporter.sendMail(mailData, (err, info) => {
